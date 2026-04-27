@@ -1,111 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Goswami Vivek Giri | Next Version Portfolio</title>
 
-import { useEffect, useState } from "react"; import { Mail, Github, Linkedin, Download, Shield, Terminal } from "lucide-react"; import { motion } from "framer-motion";
+<style>
+:root{
+--bg:#050505;
+--card:#111111;
+--text:#eaeaea;
+--muted:#8a8a8a;
+--accent:#00ff41;
+--border:#232323;
+}
 
-export default function Portfolio() { const [dark, setDark] = useState(true);
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+scroll-behavior:smooth;
+}
 
-useEffect(() => { const root = window.document.documentElement; if (dark) root.classList.add("dark"); else root.classList.remove("dark"); }, [dark]);
+body{
+background:var(--bg);
+color:var(--text);
+font-family:Courier New, monospace;
+line-height:1.6;
+}
 
-const projects = [ { title: "Cyber Security Toolkit", desc: "Mini tools for hashing, encoding and vulnerability awareness.", tech: "React, Crypto APIs", }, { title: "GitHub Recon App", desc: "Advanced GitHub user intelligence dashboard using API.", tech: "React, REST API", }, { title: "Secure Landing System", desc: "Hardened UI with performance + security-first design.", tech: "Tailwind, React", }, ];
+.container{
+max-width:1150px;
+margin:auto;
+padding:0 20px;
+}
 
-return ( <div className="min-h-screen bg-white dark:bg-black text-gray-900 dark:text-white transition"> {/* NAV */} <div className="flex justify-between items-center px-6 py-4 border-b dark:border-gray-800"> <div className="flex items-center gap-2 font-bold"> <Shield size={18} /> Vivek Giri </div> <div className="flex gap-3 items-center"> <button onClick={() => setDark(!dark)} className="px-3 py-1 border rounded text-sm" > {dark ? "Light Mode" : "Dark Mode"} </button> </div> </div>
+a{
+text-decoration:none;
+color:var(--accent);
+}
 
-{/* HERO */}
-  <section className="text-center py-24 px-4">
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
-    >
-      <div className="flex justify-center mb-3">
-        <Terminal size={40} />
-      </div>
-      <h1 className="text-5xl font-bold mb-4">
-        Cyber Security Learner
-      </h1>
-      <p className="text-gray-500 dark:text-gray-400 max-w-xl mx-auto">
-        Building secure systems, exploring ethical hacking, and crafting
-        modern web experiences with a security-first mindset.
-      </p>
-      <div className="flex justify-center gap-4 mt-6">
-        <button className="flex items-center gap-2 px-5 py-2 bg-black text-white dark:bg-white dark:text-black rounded">
-          <Download size={16} /> Resume
-        </button>
-        <button className="px-5 py-2 border rounded">
-          Contact Me
-        </button>
-      </div>
-    </motion.div>
-  </section>
+header{
+position:sticky;
+top:0;
+background:#050505f0;
+backdrop-filter:blur(6px);
+border-bottom:1px solid var(--border);
+z-index:1000;
+}
 
-  {/* ABOUT */}
-  <section className="px-6 py-12 max-w-3xl mx-auto">
-    <h2 className="text-2xl font-semibold mb-3">About</h2>
-    <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-      I am Vivek Giri, focused on cybersecurity, ethical hacking and modern
-      frontend development. I enjoy breaking systems (ethically) and
-      rebuilding them stronger. My goal is to become a security engineer
-      with strong full-stack capability.
-    </p>
-  </section>
+nav{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:18px 0;
+}
 
-  {/* SKILLS */}
-  <section className="px-6 py-12 max-w-4xl mx-auto">
-    <h2 className="text-2xl font-semibold mb-6">Skills Arsenal</h2>
-    <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-      {["HTML", "CSS", "JavaScript", "React", "Tailwind", "Git", "Linux", "Security Basics"].map(
-        (s) => (
-          <div
-            key={s}
-            className="border dark:border-gray-800 rounded p-3 text-center hover:scale-105 transition"
-          >
-            {s}
-          </div>
-        )
-      )}
-    </div>
-  </section>
+.logo{
+font-size:24px;
+font-weight:bold;
+color:var(--accent);
+}
 
-  {/* PROJECTS */}
-  <section className="px-6 py-12 max-w-5xl mx-auto">
-    <h2 className="text-2xl font-semibold mb-6">Projects</h2>
-    <div className="grid md:grid-cols-3 gap-5">
-      {projects.map((p) => (
-        <motion.div
-          key={p.title}
-          whileHover={{ scale: 1.05 }}
-          className="border dark:border-gray-800 rounded-xl p-5"
-        >
-          <h3 className="font-semibold mb-2">{p.title}</h3>
-          <p className="text-sm text-gray-500 mb-2">{p.desc}</p>
-          <span className="text-xs text-gray-400">{p.tech}</span>
-        </motion.div>
-      ))}
-    </div>
-  </section>
+.nav-links{
+display:flex;
+gap:18px;
+list-style:none;
+}
 
-  {/* CONTACT */}
-  <section className="px-6 py-12 max-w-3xl mx-auto text-center">
-    <h2 className="text-2xl font-semibold mb-3">Contact</h2>
-    <p className="text-gray-500 mb-6">
-      Open for internships, collaboration and security projects.
-    </p>
-    <div className="flex justify-center gap-5">
-      <a className="flex items-center gap-2" href="#">
-        <Mail size={18} /> Email
-      </a>
-      <a className="flex items-center gap-2" href="#">
-        <Github size={18} /> GitHub
-      </a>
-      <a className="flex items-center gap-2" href="#">
-        <Linkedin size={18} /> LinkedIn
-      </a>
-    </div>
-  </section>
+.nav-links a:hover{
+color:#fff;
+}
 
-  {/* FOOTER */}
-  <footer className="text-center py-6 text-sm text-gray-500">
-    © {new Date().getFullYear()} Vivek Giri | Cyber Security Portfolio
-  </footer>
+.hero{
+padding:100px 0;
+text-align:center;
+}
+
+.status{
+color:var(--accent);
+margin-bottom:10px;
+}
+
+.hero h1{
+font-size:48px;
+margin-bottom:12px;
+}
+
+.hero span{
+color:var(--accent);
+}
+
+.typing{
+font-size:20px;
+color:#fff;
+height:30px;
+margin-bottom:18px;
+}
+
+.hero p{
+max-width:720px;
+margin:auto;
+color:var(--muted);
+}
+
+.btn{
+display:inline-block;
+margin:20px 8px 0 8px;
+padding:12px 24px;
+border:1px solid var(--accent);
+color:var(--accent);
+transition:.3s;
+}
+
+.btn:hover{
+background:var(--accent);
+color:#000;
+}
+
+section{
+padding:75px 0;
+}
+
+.section-title{
+font-size:32px;
+margin-bottom:30px;
+color:var(--accent);
+text-align:center;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+}
+
+.card{
+background:var(--card);
+border:1px solid var(--border);
+padding:22px;
+border-radius:10px;
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-6px);
+border-color:var(--accent);
+}
+
+.card h3{
+margin-bottom:12px;
+color:var(--accent);
+}
+
+.card li{
+margin-bottom:7px;
+color:var(--muted);
+}
+
+.project{
+background:var(--card);
+padding:22px;
+border-radius:10px;
+border:1px solid var(--border);
+margin-bottom:16px;
+}
+
+.project h4{
+color:var(--accent);
+margin-bottom:10px;
+}
+
+.contact-box{
+background:var(--card);
+padding:25px;
+border:1px solid var(--border);
+border-radius:10px;
+text-align:center;
+}
+
+.counter{
+margin-top:20px;
+color:var(--muted);
+}
+
+.whatsapp{
+position:fixed;
+right:18px;
+bottom:18px;
+padding:12px 18px;
+background:#25D366;
+color:#000;
+font-weight:bold;
+border-radius:30px;
+z-index:999;
+}
+
+footer{
+padding:30px 0;
+text-align:center;
+border-top:1px solid var(--border);
+color:var(--muted);
+}
+
+@media(max-width:768px){
+.hero h1{
+font-size:34px;
+}
+.typing{
+font-size:17px;
+}
+.nav-links{
+display:none;
+}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="container">
+<nav>
+<div class="logo">Vivek@Cyber</div>
+
+<ul class="nav-links">
+<li><a href="#about">About</a></li>
+<li><a href="#skills">Skills</a></li>
+<li><a href="#projects">Projects</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+</nav>
+</div>
+</header>
+
+<section class="hero" id="about">
+<div class="container">
+
+<div class="status">SYSTEM STATUS : ONLINE</div>
+
+<h1>Hi, I'm <span>Goswami Vivek Giri</span></h1>
+
+<div class="typing" id="typing"></div>
+
+<p>
+Hands-on learner with practical experience in Kali Linux, troubleshooting systems,
+network analysis, web security basics and IT support operations.
+</p>
+
+<a href="#contact" class="btn">Hire Me</a>
+<a href="./cv.pdf" download="Goswami_Vivek_Giri_CV.pdf" class="btn">Download CV</a>
+
+</div>
+</section>
+
+<section id="skills">
+<div class="container">
+
+<h2 class="section-title">Technical Skills</h2>
+
+<div class="grid">
+
+<div class="card">
+<h3>Cyber Security</h3>
+<ul>
+<li>Web Security Basics</li>
+<li>Reconnaissance</li>
+<li>Burp Suite</li>
+<li>SQLi / XSS Concepts</li>
+</ul>
 </div>
 
-); }
+<div class="card">
+<h3>Networking</h3>
+<ul>
+<li>Nmap</li>
+<li>Wireshark</li>
+<li>IP / DNS / Ports</li>
+<li>Router Basics</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>Linux & Systems</h3>
+<ul>
+<li>Kali Linux</li>
+<li>Command Line</li>
+<li>VirtualBox</li>
+<li>Diagnostics</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>IT Support</h3>
+<ul>
+<li>OS Installation</li>
+<li>Error Fixing</li>
+<li>Drivers</li>
+<li>Optimization</li>
+</ul>
+</div>
+
+</div>
+</div>
+</section>
+
+<section id="projects">
+<div class="container">
+
+<h2 class="section-title">Projects</h2>
+
+<div class="project">
+<h4>Home Cyber Lab</h4>
+<p>Created Kali Linux environment for testing tools and practicing cybersecurity labs.</p>
+</div>
+
+<div class="project">
+<h4>Traffic Analysis</h4>
+<p>Used Wireshark to inspect packets and understand protocols.</p>
+</div>
+
+<div class="project">
+<h4>System Repair Practice</h4>
+<p>Resolved slow systems, software crashes and installation issues.</p>
+</div>
+
+</div>
+</section>
+
+<section id="contact">
+<div class="container">
+
+<h2 class="section-title">Contact Me</h2>
+
+<div class="contact-box">
+<p>Email: mr.goswami.v@gmail.com</p>
+<p>Mobile: +91 9235826013</p>
+<p>GitHub: github.com/mr-gir</p>
+<p>ORCID: 0009-0003-5894-4493</p>
+
+<a href="mailto:mr.goswami.v@gmail.com" class="btn">Send Message</a>
+<a href="./cv.pdf" download="Goswami_Vivek_Giri_CV.pdf" class="btn">Download CV</a>
+
+<div class="counter">
+Visitors: <span id="visitCount">1</span>
+</div>
+
+</div>
+
+</div>
+</section>
+
+<a href="https://wa.me/919235826013" class="whatsapp" target="_blank">WhatsApp</a>
+
+<footer>
+<div class="container">
+<p>© 2026 Goswami Vivek Giri | All Rights Reserved</p>
+</div>
+</footer>
+
+<script>
+const roles = [
+"IT Support Specialist",
+"Junior Cyber Security Learner",
+"Linux User",
+"Troubleshooting Expert"
+];
+
+let i = 0;
+let j = 0;
+let current = "";
+let isDeleting = false;
+
+function type(){
+document.getElementById("typing").innerHTML = current;
+
+if(!isDeleting && j < roles[i].length){
+current += roles[i][j];
+j++;
+setTimeout(type,80);
+}
+else if(isDeleting && j > 0){
+current = current.slice(0,-1);
+j--;
+setTimeout(type,35);
+}
+else{
+isDeleting = !isDeleting;
+
+if(!isDeleting){
+i = (i + 1) % roles.length;
+}
+setTimeout(type,800);
+}
+}
+type();
+
+let count = localStorage.getItem("visitCount") || 0;
+count++;
+localStorage.setItem("visitCount", count);
+document.getElementById("visitCount").innerText = count;
+</script>
+
+</body>
+</html>
